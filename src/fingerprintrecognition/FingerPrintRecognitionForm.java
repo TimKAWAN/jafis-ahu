@@ -124,7 +124,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
         labelL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
-        labelL.setText("Left Loop");
+        labelL.setText("Ulnar Loop");
         labelL.setToolTipText("Classified as whorl");
         labelL.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         labelL.setOpaque(true);
@@ -138,7 +138,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
         labelR.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
-        labelR.setText("Right Loop");
+        labelR.setText("Radial Loop");
         labelR.setToolTipText("Classified as whorl");
         labelR.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         labelR.setOpaque(true);

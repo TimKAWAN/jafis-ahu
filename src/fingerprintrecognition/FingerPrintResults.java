@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class FingerPrintResults extends javax.swing.JFrame {
 
-    private final ArrayList<String> fingerClasses;
+    private ArrayList<String> fingerClasses;
 
     /**
      * Creates new form FingerPrintResults
@@ -21,9 +21,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
      * @param fingerClasses
      */
     public FingerPrintResults(ArrayList<String> fingerClasses) {
+        this.fingerClasses = fingerClasses;
         initComponents();
         initUI();
-        this.fingerClasses = fingerClasses;
+        processParams();
     }
 
     /**
@@ -371,5 +372,20 @@ public class FingerPrintResults extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FingerPrintResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+    }
+
+    private void processParams() {
+        if (fingerClasses == null) {
+            String[] types = {"Type_A", "Type_L", "Type_R", "Type_W", "Type_T"};
+            fingerClasses = new ArrayList<>();
+
+            for (int at = 1; at <= 10; at++) {
+                fingerClasses.add(types[((int) (Math.random() * types.length))]);
+            }
+        }
+
+        fingerClasses.forEach((fingerClass) -> {
+            System.out.println("Class: ".concat(fingerClass));
+        });
     }
 }
