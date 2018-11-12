@@ -13,6 +13,12 @@ import java.util.ArrayList;
  */
 public class FingerPrintResults extends javax.swing.JFrame {
 
+    /**
+     * The Henry system of fingerprint classification
+     *
+     * finger order: 1: R thumb 2: R index 3: R middle 4: R ring 5: R pinky 6: L
+     * thumb 7: L index 8: L middle 9: L ring 10: L pinky/little
+     */
     private ArrayList<String> fingerClasses;
 
     /**
@@ -384,8 +390,20 @@ public class FingerPrintResults extends javax.swing.JFrame {
             }
         }
 
-        fingerClasses.forEach((fingerClass) -> {
-            System.out.println("Class: ".concat(fingerClass));
-        });
+        for (int i = 0; i < fingerClasses.size(); i++) {
+            System.out.println("Class: ".concat(fingerClasses.get(i)));
+            determinePrimary(i, fingerClasses.get(i));
+        }
+    }
+
+    /**
+     * Primary Classification
+     *
+     * Fingers 1-10 are valued thusly: 16 16 8 8 4 4 2 2 1 1.
+     *
+     * @param index
+     * @param fingerClass
+     */
+    private void determinePrimary(int index, String fingerClass) {
     }
 }

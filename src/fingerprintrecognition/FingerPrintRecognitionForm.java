@@ -38,6 +38,33 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private JLabel label;
     private int width, width2;
     private int height, height2;
+    /**
+     * The Henry system of fingerprint classification
+     *
+     * finger order:
+     *
+     * 1: R thumb
+     *
+     * 2: R index
+     *
+     * 3: R middle
+     *
+     * 4: R ring
+     *
+     * 5: R pinky
+     *
+     * 6: L thumb
+     *
+     * 7: L index
+     *
+     * 8: L middle
+     *
+     * 9: L ring
+     *
+     * 10: L pinky/little
+     *
+     * order isn't in zero index, for this variable, use zero indexing
+     */
     private ArrayList<String> fingerClasses; // pass params for results frame
 
     /**
