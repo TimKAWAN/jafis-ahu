@@ -16,8 +16,40 @@ public class FingerPrintResults extends javax.swing.JFrame {
     /**
      * The Henry system of fingerprint classification
      *
-     * finger order: 1: R thumb 2: R index 3: R middle 4: R ring 5: R pinky 6: L
-     * thumb 7: L index 8: L middle 9: L ring 10: L pinky/little
+     * finger order:
+     *
+     * 1: R thumb
+     *
+     * 2: R index
+     *
+     * 3: R middle
+     *
+     * 4: R ring
+     *
+     * 5: R pinky
+     *
+     * 6: L thumb
+     *
+     * 7: L index
+     *
+     * 8: L middle
+     *
+     * 9: L ring
+     *
+     * 10: L pinky/little
+     *
+     * The value given for each finger is a capital letter for the class of
+     * print:
+     *
+     * W - Whorl
+     *
+     * A - Arch
+     *
+     * T - Tented Arch
+     *
+     * R - Radial Loop
+     *
+     * U - Ulnar Loop (for now replace with L).
      */
     private ArrayList<String> fingerClasses;
 
@@ -75,8 +107,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Key"));
 
+        key1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         key1Txt.setText("...");
 
+        key2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         key2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -102,8 +136,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Classification"));
 
+        class1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         class1Txt.setText("...");
 
+        class2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         class2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -129,8 +165,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Major Division"));
 
+        major1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         major1Txt.setText("...");
 
+        major2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         major2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -156,8 +194,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Final"));
 
+        final1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         final1Txt.setText("...");
 
+        final2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         final2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -183,8 +223,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Secondary"));
 
+        second1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         second1Txt.setText("...");
 
+        second2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         second2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -210,8 +252,10 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Sub Secondary"));
 
+        sub1Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sub1Txt.setText("...");
 
+        sub2Txt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         sub2Txt.setText("...");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -381,29 +425,79 @@ public class FingerPrintResults extends javax.swing.JFrame {
     }
 
     private void processParams() {
-        if (fingerClasses == null) {
-            String[] types = {"Type_A", "Type_L", "Type_R", "Type_W", "Type_T"};
-            fingerClasses = new ArrayList<>();
+//        if (fingerClasses == null) {
+//            String[] types = {"Type_A", "Type_L", "Type_R", "Type_W", "Type_T"};
+//            fingerClasses = new ArrayList<>();
+//
+//            for (int at = 1; at <= 10; at++) {
+//                fingerClasses.add(types[((int) (Math.random() * types.length))]);
+//            }
+//        }
+//
+//        for (int i = 0; i < fingerClasses.size(); i++) {
+//            System.out.println("Class: ".concat(fingerClasses.get(i)));
+//        }
 
-            for (int at = 1; at <= 10; at++) {
-                fingerClasses.add(types[((int) (Math.random() * types.length))]);
+        if (fingerClasses != null) {
+            if (fingerClasses.size() == 10) {
+                determinePrimary();
+                determineSecondary();
             }
-        }
-
-        for (int i = 0; i < fingerClasses.size(); i++) {
-            System.out.println("Class: ".concat(fingerClasses.get(i)));
-            determinePrimary(i, fingerClasses.get(i));
         }
     }
 
     /**
      * Primary Classification
      *
-     * Fingers 1-10 are valued thusly: 16 16 8 8 4 4 2 2 1 1.
+     * Generally presented in two rows:
      *
-     * @param index
-     * @param fingerClass
+     * 1 2 3 4 5
+     *
+     * 6 7 8 9 10
+     *
+     * Fingers 1-10 are valued thusly: 16 16 8 8 4 4 2 2 1 1
+     *
+     * Above the line is 1 plus the sum of the value of each even finger
+     * (2,4,6,8,10) whose class is a Whorl
+     *
+     * Below the line is 1 plus the sum of the value of each odd finger
+     * (1,3,5,7,9) whose class is a Whorl
+     *
+     * If not Whorl just give value 0.
      */
-    private void determinePrimary(int index, String fingerClass) {
+    private void determinePrimary() {
+        int[] values = {16, 16, 8, 8, 4, 4, 2, 2, 1, 1};
+        int evenValue = 0, oddValue = 0;
+
+        for (int i = 0; i < fingerClasses.size(); i++) {
+            if (fingerClasses.get(i).equals("Type_W")) {
+                if ((i + 1) % 2 == 0) {
+                    evenValue += values[i];
+                } else {
+                    oddValue += values[i];
+                }
+            }
+        }
+
+        evenValue++;
+        oddValue++;
+        class1Txt.setText(String.valueOf(evenValue));
+        class2Txt.setText(String.valueOf(oddValue));
+    }
+
+    /**
+     * Secondary Classification
+     *
+     * get values from right and left index fingers in "WATRU".
+     */
+    private void determineSecondary() {
+        String rIndex = fingerClasses.get(1), lIndex = fingerClasses.get(6); // get R&L index finger
+        // replace unnecessary chars and different naming
+        rIndex = rIndex.replaceAll("Type_", "");
+        lIndex = lIndex.replaceAll("Type_", "");
+        rIndex = rIndex.replace("L", "U");
+        lIndex = lIndex.replace("L", "U");
+        second1Txt.setText(rIndex);
+        second2Txt.setText(lIndex);
     }
 }

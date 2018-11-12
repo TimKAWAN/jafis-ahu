@@ -134,11 +134,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="key1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="key2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
@@ -181,11 +183,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="class1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="class2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
@@ -228,11 +232,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="major1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="major2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
@@ -275,11 +281,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="final1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="final2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
@@ -322,11 +330,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="second1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="second2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
@@ -369,11 +379,13 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="sub1Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="sub2Txt">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
