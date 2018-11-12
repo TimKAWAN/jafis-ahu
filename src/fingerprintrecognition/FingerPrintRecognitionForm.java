@@ -38,6 +38,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private JLabel label;
     private int width, width2;
     private int height, height2;
+    private ArrayList<String> fingerClasses; // pass params for results frame
 
     /**
      * Creates new form FingerPrintClassificationForm
@@ -366,7 +367,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_AnalyzeActionPerformed
 
     private void resultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultBtnActionPerformed
-        FingerPrintResults results = new FingerPrintResults();
+        FingerPrintResults results = new FingerPrintResults(fingerClasses);
         results.setLocationRelativeTo(null);
         results.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         results.setVisible(true);
@@ -488,10 +489,6 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
