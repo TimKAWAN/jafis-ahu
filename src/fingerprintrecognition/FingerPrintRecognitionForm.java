@@ -11,9 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +28,16 @@ import org.apache.commons.math3.ml.distance.EuclideanDistance;
  * @author Sabri
  */
 public class FingerPrintRecognitionForm extends javax.swing.JFrame {
+
+    private JFileChooser chooser1, chooser2;
+    private BufferedImage img1, img2;
+    private JButton button, button2;
+    private JFrame comp;
+    private String filename;
+    private File file1;
+    private JLabel label;
+    private int width, width2;
+    private int height, height2;
 
     /**
      * Creates new form FingerPrintClassificationForm
@@ -60,6 +68,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         labelA = new javax.swing.JLabel();
         labelT = new javax.swing.JLabel();
         StatusLabel = new javax.swing.JLabel();
+        resultBtn = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -150,6 +159,13 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         StatusLabel.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         StatusLabel.setText("Status");
 
+        resultBtn.setText("Show Results");
+        resultBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resultBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,13 +180,15 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                         .addComponent(Panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(finger1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Analyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Analyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(resultBtn))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,9 +200,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                     .addComponent(Analyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(StatusLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelW)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,270 +215,252 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelA)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelT)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(StatusLabel)
+                        .addComponent(labelT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(resultBtn)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    JFileChooser chooser1,chooser2;
-    BufferedImage img1,img2;
-    JButton button,button2;
-    JFrame comp;
-    String filename;
-    File file1 ; 
-    JLabel label;
-    int width,width2;
-    int height,height2;
     private void finger1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger1ActionPerformed
-        
+
         chooser1 = new JFileChooser();
         chooser1.showOpenDialog(null);
-        if(chooser1.getSelectedFile() != null){
+        if (chooser1.getSelectedFile() != null) {
             setGrayColor();
             file1 = chooser1.getSelectedFile();
             try {
-                img1=ImageIO.read(file1);
+                img1 = ImageIO.read(file1);
                 width = img1.getWidth();
                 height = img1.getHeight();
                 ImageIcon imageIcon = new ImageIcon(img1.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
                 Finger1Label.setIcon(imageIcon);
-                
-                CFingerPrint cp = new CFingerPrint(width,height);
+
+                CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img1);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
             }
-            catch(IOException e1) {System.err.println("Can't read file.");}
         }
     }//GEN-LAST:event_finger1ActionPerformed
-    
-    private void setGrayColor(){
+
+    private void setGrayColor() {
         labelA.setBackground(Color.decode("#F0F0F0"));
         labelL.setBackground(Color.decode("#F0F0F0"));
         labelR.setBackground(Color.decode("#F0F0F0"));
         labelW.setBackground(Color.decode("#F0F0F0"));
         labelT.setBackground(Color.decode("#F0F0F0"));
     }
-    
+
     private static final double STANDARD_DEVIATION = 1;
     private static final double ORIENTATION = Math.PI * 0.25;
     private static final double WAVE_LENGTH = 1;
     private static final double PHASE_OFFSET = 0;
     private static final double ASPECT_RATIO = 0.5;
-    
+
     private void AnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyzeActionPerformed
         setGrayColor();
 
-        if(chooser1 != null && chooser1.getSelectedFile() != null )
-        {
+        if (chooser1 != null && chooser1.getSelectedFile() != null) {
             //Turn off buttons
             finger1.setEnabled(false);
             Analyze.setEnabled(false);
-            
-            
-                
-            
-            
-                ///////////////////
-                final List<Double> A_eDist = new ArrayList();
-                final List<Double> L_eDist = new ArrayList();
-                final List<Double> R_eDist = new ArrayList();
-                final List<Double> W_eDist = new ArrayList();
-                final List<Double> T_eDist = new ArrayList();
 
-                //Gabor filter
-                BufferedImage filteredImage1 = new BufferedImage(img1.getWidth(),img1.getHeight(), img1.getType());
-                GaborFilter gf = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
-                        WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
-                gf.filter(img1, filteredImage1);
+            ///////////////////
+            final List<Double> A_eDist = new ArrayList();
+            final List<Double> L_eDist = new ArrayList();
+            final List<Double> R_eDist = new ArrayList();
+            final List<Double> W_eDist = new ArrayList();
+            final List<Double> T_eDist = new ArrayList();
 
+            //Gabor filter
+            BufferedImage filteredImage1 = new BufferedImage(img1.getWidth(), img1.getHeight(), img1.getType());
+            GaborFilter gf = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
+                    WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
+            gf.filter(img1, filteredImage1);
 
-                final CFingerPrint cp = new CFingerPrint(width,height); //t1 : 328, 473
+            final CFingerPrint cp = new CFingerPrint(width, height); //t1 : 328, 473
+            cp.setFingerPrintImage(img1);
+
+            //System.out.println("Match %"+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
+            //PercentageLabel.setText(""+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
+            ImageIcon imageIcon = new ImageIcon((cp.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+            Finger1Label.setIcon(imageIcon);
+
+            //Read arch type
+            new Thread(() -> {
+                //Test for confusion matris
+                /* for (int k = 1; k <= 40; k++) {
+                String archt = "./src/fingerprints/W/W_ ("+k+").png";
+                File filet = new File(archt);
+                try {
+                img1=ImageIO.read(filet);
+                width = img1.getWidth();
+                height = img1.getHeight();
+                } catch (IOException ex) {
+                Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Can't read file.");
+                }
                 cp.setFingerPrintImage(img1);
+                 *///Test for confusion matris
 
-                //System.out.println("Match %"+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
-                //PercentageLabel.setText(""+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
-
-                ImageIcon imageIcon = new ImageIcon((cp.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
-                Finger1Label.setIcon(imageIcon);
-
-                //Read arch type
-                new Thread(new Runnable()
-                {
-                    @Override
-                    public void run() 
-                    {
-                        //Test for confusion matris
-                       /* for (int k = 1; k <= 40; k++) {
-                            String archt = "./src/fingerprints/W/W_ ("+k+").png";
-                            File filet = new File(archt);
-                            try {
-                                img1=ImageIO.read(filet);
-                                width = img1.getWidth();
-                                height = img1.getHeight();
-                            } catch (IOException ex) {
-                                Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
-                                System.err.println("Can't read file.");
-                            }
-                            cp.setFingerPrintImage(img1);
-                        *///Test for confusion matris
-                        
-                            EuclideanDistance ed = new EuclideanDistance();
-                            String [] types = {"A","L","R","W","T"};
-                            String [] statusTexts = {"Reading arch..","Reading left loop..","Reading right loop..","Reading whorl..","Reading tented arch.."};
-                            for (int j = 0; j < types.length; j++) {//Types of fingerprint
-                                StatusLabel.setText(statusTexts[j]);
-                                for (int i = 1; i <= 90 /*186*/; i++) {//Iteration on selected fingerprint directory
-                                    //String arch2 = "./src/fingerprints/A/A_ ("+i+").png";
-                                    String arch = "./src/fingerprints/"+types[j]+"/"+types[j]+"_ ("+i+").png";
-                                    File file2 = new File(arch);
-                                    BufferedImage filteredImage=null;
-                                    try {
-                                        img2=ImageIO.read(file2);
-                                        width2 = img2.getWidth();
-                                        height2 = img2.getHeight();
-
-                                        //Gabor filter
-                                        filteredImage = new BufferedImage(img2.getWidth(),img2.getHeight(), img2.getType());
-                                        GaborFilter gf = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
-                                                WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
-                                        gf.filter(img2, filteredImage);
-
-
-                                    } catch (IOException ex) {
-                                        Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-                                    CFingerPrint cp2 = new CFingerPrint(width2,height2); //t1 : 328, 473
-                                    cp2.setFingerPrintImage(img2);
-
-                                    ImageIcon imageIcon2 = new ImageIcon((cp2.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
-                                    Finger2Label.setIcon(imageIcon2);
-
-                                    double res = ed.compute(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate());
-                                    //System.out.println(types[j]+"Euclidean: "+res);
-
-                                    //Save Euclidean distance
-                                    switch(j){
-                                        case 0:
-                                            A_eDist.add(res);
-                                            break;
-                                        case 1:
-                                            L_eDist.add(res);
-                                            break;
-                                        case 2:
-                                            R_eDist.add(res);
-                                            break;
-                                        case 3:
-                                            W_eDist.add(res);
-                                            break;
-                                        case 4:
-                                            T_eDist.add(res);
-                                            break;
-                                    }
-                                }
-                            }
-                            sortEuclidean(A_eDist,L_eDist,R_eDist,W_eDist,T_eDist);
-                            StatusLabel.setText("Done..");
-                        //}//Test for confusion matris
+                EuclideanDistance ed = new EuclideanDistance();
+                String[] types = {"A", "L", "R", "W", "T"};
+                String[] statusTexts = {"Reading arch..", "Reading left loop..", "Reading right loop..", "Reading whorl..", "Reading tented arch.."};
+                for (int j = 0; j < types.length; j++) {
+                    //Types of fingerprint
+                    StatusLabel.setText(statusTexts[j]);
+                    for (int i = 1; i <= 90 /*186*/; i++) {
+                        //Iteration on selected fingerprint directory
+                        //String arch2 = "./src/fingerprints/A/A_ ("+i+").png";
+                        String arch = "./src/fingerprints/" + types[j] + "/" + types[j] + "_ (" + i + ").png";
+                        File file2 = new File(arch);
+                        BufferedImage filteredImage;
+                        try {
+                            img2 = ImageIO.read(file2);
+                            width2 = img2.getWidth();
+                            height2 = img2.getHeight();
+                            //Gabor filter
+                            filteredImage = new BufferedImage(img2.getWidth(), img2.getHeight(), img2.getType());
+                            GaborFilter gf1 = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
+                                    WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
+                            gf1.filter(img2, filteredImage);
+                        } catch (IOException ex) {
+                            Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        CFingerPrint cp2 = new CFingerPrint(width2, height2); //t1 : 328, 473
+                        cp2.setFingerPrintImage(img2);
+                        ImageIcon imageIcon2 = new ImageIcon((cp2.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+                        Finger2Label.setIcon(imageIcon2);
+                        double res = ed.compute(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate());
+                        //System.out.println(types[j]+"Euclidean: "+res);
+                        //Save Euclidean distance
+                        switch (j) {
+                            case 0:
+                                A_eDist.add(res);
+                                break;
+                            case 1:
+                                L_eDist.add(res);
+                                break;
+                            case 2:
+                                R_eDist.add(res);
+                                break;
+                            case 3:
+                                W_eDist.add(res);
+                                break;
+                            case 4:
+                                T_eDist.add(res);
+                                break;
+                        }
                     }
-                }).start();
-                ////////////////////
-            
+                }
+                sortEuclidean(A_eDist, L_eDist, R_eDist, W_eDist, T_eDist);
+                StatusLabel.setText("Done..");
+                //}//Test for confusion matris
+            }).start();
+            ////////////////////
+
         }
     }//GEN-LAST:event_AnalyzeActionPerformed
-    
-    private void sortEuclidean(List<Double> A,List<Double> L,List<Double> R,List<Double> W,List<Double> T){
-        Double [] nearest []= new Double[50][2];
+
+    private void resultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultBtnActionPerformed
+        FingerPrintResults results = new FingerPrintResults();
+        results.setLocationRelativeTo(null);
+        results.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        results.setVisible(true);
+    }//GEN-LAST:event_resultBtnActionPerformed
+
+    private void sortEuclidean(List<Double> A, List<Double> L, List<Double> R, List<Double> W, List<Double> T) {
+        Double[] nearest[] = new Double[50][2];
         Collections.sort(A);
         Collections.sort(L);
         Collections.sort(R);
         Collections.sort(W);
         Collections.sort(T);
-        
+
         //Take 10 elements from each
-        for (int j = 0,x=0; j < 10; j++,x++) {
+        for (int j = 0, x = 0; j < 10; j++, x++) {
             nearest[j][0] = 0.0;
             nearest[j][1] = A.get(x);
         }
-        for (int j = 10,x=0; j < 20; j++,x++) {
+        for (int j = 10, x = 0; j < 20; j++, x++) {
             nearest[j][0] = 1.0;
             nearest[j][1] = L.get(x);
         }
-        for (int j = 20,x=0; j < 30; j++,x++) {
+        for (int j = 20, x = 0; j < 30; j++, x++) {
             nearest[j][0] = 2.0;
             nearest[j][1] = R.get(x);
         }
-        for (int j = 30,x=0; j < 40; j++,x++) {
+        for (int j = 30, x = 0; j < 40; j++, x++) {
             nearest[j][0] = 3.0;
             nearest[j][1] = W.get(x);
         }
-        for (int j = 40,x=0; j < 50; j++,x++) {
+        for (int j = 40, x = 0; j < 50; j++, x++) {
             nearest[j][0] = 4.0;
             nearest[j][1] = T.get(x);
         }
-        
+
         //sort according to type
         sortLast50(nearest);
         knnAlgorithm(nearest);
 
     }
-    
-    private void sortLast50(Double [][] nearest){
+
+    private void sortLast50(Double[][] nearest) {
         for (int i = 0; i < 50; i++) {
             for (int j = i; j < 50; j++) {
-                if(nearest[i][1] > nearest[j][1])
-                {
+                if (nearest[i][1] > nearest[j][1]) {
                     double temp1 = nearest[i][0];
                     double temp2 = nearest[i][1];
-                    
+
                     nearest[i][0] = nearest[j][0];
                     nearest[i][1] = nearest[j][1];
-                    
+
                     nearest[j][0] = temp1;
                     nearest[j][1] = temp2;
                 }
-            }  
+            }
         }
     }
 
-    private void knnAlgorithm(Double [][] nearest){
-        int A=0,L=0,R=0,W=0,T=0;
+    private void knnAlgorithm(Double[][] nearest) {
+        int A = 0, L = 0, R = 0, W = 0, T = 0;
         for (int i = 0; i < 15; i++) {
-            if(nearest[i][0] == 0)
+            if (nearest[i][0] == 0) {
                 A++;
-            else if(nearest[i][0] == 1)
+            } else if (nearest[i][0] == 1) {
                 L++;
-            else if(nearest[i][0] == 2)
+            } else if (nearest[i][0] == 2) {
                 R++;
-            else if(nearest[i][0] == 3)
+            } else if (nearest[i][0] == 3) {
                 W++;
-            else if(nearest[i][0] == 4)
+            } else if (nearest[i][0] == 4) {
                 T++;
+            }
         }
-        
+
         String imagePath = "./src/icons/appicon.png";
         ImageIcon imageIcon = new ImageIcon(imagePath);
-        
-        if(A>=L && A>=R && A>=W && A>=T){
+
+        if (A >= L && A >= R && A >= W && A >= T) {
             labelA.setBackground(Color.GREEN);
             System.out.println("Type_A");
         }
-        if(L>=A && L>=R && L>=W && L>=T){
+        if (L >= A && L >= R && L >= W && L >= T) {
             labelL.setBackground(Color.GREEN);
             System.out.println("Type_L");
         }
-        if(R>=A && R>=L && R>=W && R>=T){
+        if (R >= A && R >= L && R >= W && R >= T) {
             labelR.setBackground(Color.GREEN);
             System.out.println("Type_R");
         }
-        if(W>=A && W>=L && W>=R && W>=T){
+        if (W >= A && W >= L && W >= R && W >= T) {
             labelW.setBackground(Color.GREEN);
             System.out.println("Type_W");
         }
-        if(T>=A && T>=L && T>=W && T>=R){
+        if (T >= A && T >= L && T >= W && T >= R) {
             labelT.setBackground(Color.GREEN);
             System.out.println("Type_T");
         }
@@ -465,6 +468,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         finger1.setEnabled(true);
         Analyze.setEnabled(true);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -481,23 +485,20 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FingerPrintRecognitionForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FingerPrintRecognitionForm form = new FingerPrintRecognitionForm();
+            form.setLocationRelativeTo(null);
+            form.setVisible(true);
         });
     }
 
@@ -515,5 +516,6 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelR;
     private javax.swing.JLabel labelT;
     private javax.swing.JLabel labelW;
+    private javax.swing.JButton resultBtn;
     // End of variables declaration//GEN-END:variables
 }
