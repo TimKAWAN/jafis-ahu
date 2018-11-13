@@ -29,13 +29,13 @@ import org.apache.commons.math3.ml.distance.EuclideanDistance;
  */
 public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
-    private JFileChooser chooser1, chooser2;
-    private BufferedImage img1, img2;
+    private JFileChooser chooser1, chooser2, chooser3, chooser4, chooser5, chooser6, chooser7, chooser8, chooser9, chooser10;
+    private BufferedImage img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, imgCompare;
     private JButton button, button2;
     private JFrame comp;
     private String filename;
-    private File file1;
-    private JLabel label;
+    private File file1, file2, file3, file4, file5, file6, file7, file8, file9, file10;
+    private JLabel label,jLabelifDone;
     private int width, width2;
     private int height, height2;
     /**
@@ -84,19 +84,55 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
-        finger1 = new javax.swing.JButton();
-        Analyze = new javax.swing.JButton();
         Panel1 = new javax.swing.JPanel();
         Finger1Label = new javax.swing.JLabel();
-        Panel2 = new javax.swing.JPanel();
+        finger1 = new javax.swing.JButton();
+        StatusLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        finger2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Finger2Label = new javax.swing.JLabel();
-        labelL = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        Analyze = new javax.swing.JButton();
         labelW = new javax.swing.JLabel();
+        labelL = new javax.swing.JLabel();
         labelR = new javax.swing.JLabel();
         labelA = new javax.swing.JLabel();
         labelT = new javax.swing.JLabel();
-        StatusLabel = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        finger3 = new javax.swing.JButton();
+        fingerLabel3 = new javax.swing.JLabel();
+        status3 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        finger4 = new javax.swing.JButton();
+        fingerLabel4 = new javax.swing.JLabel();
+        status4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        finger5 = new javax.swing.JButton();
+        fingerLabel5 = new javax.swing.JLabel();
+        status5 = new javax.swing.JLabel();
         resultBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        finger6 = new javax.swing.JButton();
+        fingerLabel7 = new javax.swing.JLabel();
+        status7 = new javax.swing.JLabel();
+        Panel2 = new javax.swing.JPanel();
+        Finger6Label = new javax.swing.JLabel();
+        finger7 = new javax.swing.JButton();
+        status6 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        finger8 = new javax.swing.JButton();
+        fingerLabel8 = new javax.swing.JLabel();
+        status8 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        finger9 = new javax.swing.JButton();
+        fingerLabel9 = new javax.swing.JLabel();
+        status9 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        finger10 = new javax.swing.JButton();
+        fingerLabel10 = new javax.swing.JLabel();
+        status10 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -110,7 +146,10 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(1316, 870));
+
+        Panel1.setBackground(new java.awt.Color(102, 102, 102));
 
         finger1.setText("Select Fingerprint");
         finger1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +157,67 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 finger1ActionPerformed(evt);
             }
         });
+
+        StatusLabel.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        StatusLabel.setText("Status");
+
+        javax.swing.GroupLayout Panel1Layout = new javax.swing.GroupLayout(Panel1);
+        Panel1.setLayout(Panel1Layout);
+        Panel1Layout.setHorizontalGroup(
+            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel1Layout.createSequentialGroup()
+                .addComponent(finger1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(Finger1Label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(Panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Panel1Layout.setVerticalGroup(
+            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel1Layout.createSequentialGroup()
+                .addComponent(finger1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Finger1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(StatusLabel))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger2.setText("Select Fingerprint");
+        finger2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        jLabel2.setText("status");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+            .addComponent(finger2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(finger2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+
+        jLabel1.getAccessibleContext().setAccessibleName("fingerLabel3");
+        jLabel2.getAccessibleContext().setAccessibleName("statusLabel2");
+        jLabel2.getAccessibleContext().setAccessibleDescription("");
 
         Analyze.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search-icon.png"))); // NOI18N
         Analyze.setText("Analyze");
@@ -127,27 +227,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout Panel1Layout = new javax.swing.GroupLayout(Panel1);
-        Panel1.setLayout(Panel1Layout);
-        Panel1Layout.setHorizontalGroup(
-            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Finger1Label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        Panel1Layout.setVerticalGroup(
-            Panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Finger1Label, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout Panel2Layout = new javax.swing.GroupLayout(Panel2);
-        Panel2.setLayout(Panel2Layout);
-        Panel2Layout.setHorizontalGroup(
-            Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Finger2Label, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-        );
-        Panel2Layout.setVerticalGroup(
-            Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Finger2Label, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-        );
+        labelW.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
+        labelW.setText("Whorl");
+        labelW.setToolTipText("Classified as whorl");
+        labelW.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        labelW.setOpaque(true);
 
         labelL.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
@@ -155,13 +240,6 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         labelL.setToolTipText("Classified as whorl");
         labelL.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         labelL.setOpaque(true);
-
-        labelW.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelW.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
-        labelW.setText("Whorl");
-        labelW.setToolTipText("Classified as whorl");
-        labelW.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        labelW.setOpaque(true);
 
         labelR.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Fingerprint-icon.png"))); // NOI18N
@@ -184,8 +262,147 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         labelT.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         labelT.setOpaque(true);
 
-        StatusLabel.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        StatusLabel.setText("Status");
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Analyze, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelW, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelL, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelR, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelA, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelT)
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelA, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(labelR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelW, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Analyze, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger3.setText("Select Fingerprint");
+        finger3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger3ActionPerformed(evt);
+            }
+        });
+
+        status3.setText("status");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(finger3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
+            .addComponent(fingerLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(status3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(finger3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fingerLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status3))
+        );
+
+        fingerLabel3.getAccessibleContext().setAccessibleName("fingerLabel3");
+        status3.getAccessibleContext().setAccessibleName("status3");
+
+        jPanel6.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger4.setText("Select Fingerprint");
+        finger4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger4ActionPerformed(evt);
+            }
+        });
+
+        status4.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        status4.setText("status");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(finger4, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
+            .addComponent(status4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(fingerLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(finger4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(status4))
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(fingerLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger5.setText("Select Fingerprint");
+        finger5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger5ActionPerformed(evt);
+            }
+        });
+
+        status5.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        status5.setText("status");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fingerLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(finger5, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(status5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(finger5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fingerLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         resultBtn.setText("Show Results");
         resultBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -194,59 +411,239 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger6.setText("Select Fingerprint");
+        finger6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger6ActionPerformed(evt);
+            }
+        });
+
+        status7.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        status7.setText("status");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fingerLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+            .addComponent(finger6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(status7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(finger6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fingerLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status7)
+                .addContainerGap())
+        );
+
+        Panel2.setBackground(new java.awt.Color(102, 102, 102));
+
+        finger7.setText("Select Fingerprint");
+        finger7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger7ActionPerformed(evt);
+            }
+        });
+
+        status6.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        status6.setText("Status");
+
+        javax.swing.GroupLayout Panel2Layout = new javax.swing.GroupLayout(Panel2);
+        Panel2.setLayout(Panel2Layout);
+        Panel2Layout.setHorizontalGroup(
+            Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel2Layout.createSequentialGroup()
+                .addComponent(finger7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(Finger6Label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(Panel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(status6, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Panel2Layout.setVerticalGroup(
+            Panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel2Layout.createSequentialGroup()
+                .addComponent(finger7, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Finger6Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(status6))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger8.setText("Select Fingerprint");
+        finger8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger8ActionPerformed(evt);
+            }
+        });
+
+        status8.setText("status");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(finger8, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
+            .addComponent(fingerLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(status8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(finger8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fingerLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status8))
+        );
+
+        jPanel8.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger9.setText("Select Fingerprint");
+        finger9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger9ActionPerformed(evt);
+            }
+        });
+
+        status9.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        status9.setText("status");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(finger9, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
+            .addComponent(status9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(fingerLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(finger9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(status9)
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(fingerLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(27, Short.MAX_VALUE)))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(153, 153, 153));
+
+        finger10.setText("Select Fingerprint");
+        finger10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finger10ActionPerformed(evt);
+            }
+        });
+
+        status10.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        status10.setText("status");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fingerLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(finger10, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(status10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(finger10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fingerLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status10)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(StatusLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(finger1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelW, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Analyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(resultBtn))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Finger2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(resultBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(finger1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Analyze, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Finger2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(StatusLabel))
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelW)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelR)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(15, 15, 15)
                         .addComponent(resultBtn)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +665,8 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img1);
+                 setGrayColor();
+                AnalyzedData(chooser1, StatusLabel,Finger1Label, img1);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -290,10 +689,13 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
     private void AnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalyzeActionPerformed
         setGrayColor();
-
-        if (chooser1 != null && chooser1.getSelectedFile() != null) {
+       // AnalyzedData(chooser1, );
+    }//GEN-LAST:event_AnalyzeActionPerformed
+    
+    private void AnalyzedData(JFileChooser chooser, JLabel label,JLabel fingerLabelShow, BufferedImage imgCh){
+         if (chooser != null && chooser.getSelectedFile() != null) {
             //Turn off buttons
-            finger1.setEnabled(false);
+            chooser.setEnabled(true);
             Analyze.setEnabled(false);
 
             ///////////////////
@@ -304,18 +706,18 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
             final List<Double> T_eDist = new ArrayList();
 
             //Gabor filter
-            BufferedImage filteredImage1 = new BufferedImage(img1.getWidth(), img1.getHeight(), img1.getType());
+            BufferedImage filteredImage1 = new BufferedImage(imgCh.getWidth(), imgCh.getHeight(), imgCh.getType());
             GaborFilter gf = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
                     WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
-            gf.filter(img1, filteredImage1);
+            gf.filter(imgCh, filteredImage1);
 
             final CFingerPrint cp = new CFingerPrint(width, height); //t1 : 328, 473
-            cp.setFingerPrintImage(img1);
+            cp.setFingerPrintImage(imgCh);
 
             //System.out.println("Match %"+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
             //PercentageLabel.setText(""+cp.Match(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate(), 50, false));
             ImageIcon imageIcon = new ImageIcon((cp.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
-            Finger1Label.setIcon(imageIcon);
+            fingerLabelShow.setIcon(imageIcon);
 
             //Read arch type
             new Thread(() -> {
@@ -339,7 +741,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 String[] statusTexts = {"Reading arch..", "Reading left loop..", "Reading right loop..", "Reading whorl..", "Reading tented arch.."};
                 for (int j = 0; j < types.length; j++) {
                     //Types of fingerprint
-                    StatusLabel.setText(statusTexts[j]);
+                    label.setText(statusTexts[j]);
                     for (int i = 1; i <= 90 /*186*/; i++) {
                         //Iteration on selected fingerprint directory
                         //String arch2 = "./src/fingerprints/A/A_ ("+i+").png";
@@ -347,21 +749,21 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                         File file2 = new File(arch);
                         BufferedImage filteredImage;
                         try {
-                            img2 = ImageIO.read(file2);
-                            width2 = img2.getWidth();
-                            height2 = img2.getHeight();
+                            imgCompare = ImageIO.read(file2);
+                            width2 = imgCompare.getWidth();
+                            height2 = imgCompare.getHeight();
                             //Gabor filter
-                            filteredImage = new BufferedImage(img2.getWidth(), img2.getHeight(), img2.getType());
+                            filteredImage = new BufferedImage(imgCompare.getWidth(), imgCompare.getHeight(), imgCompare.getType());
                             GaborFilter gf1 = new GaborFilter(STANDARD_DEVIATION, ORIENTATION,
                                     WAVE_LENGTH, PHASE_OFFSET, ASPECT_RATIO);
-                            gf1.filter(img2, filteredImage);
+                            gf1.filter(imgCompare, filteredImage);
                         } catch (IOException ex) {
                             Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         CFingerPrint cp2 = new CFingerPrint(width2, height2); //t1 : 328, 473
-                        cp2.setFingerPrintImage(img2);
+                        cp2.setFingerPrintImage(imgCompare);
                         ImageIcon imageIcon2 = new ImageIcon((cp2.getFingerPrintImage()).getScaledInstance(250, 306, Image.SCALE_DEFAULT));
-                        Finger2Label.setIcon(imageIcon2);
+                      //  Finger2Label.setIcon(imageIcon2);
                         double res = ed.compute(cp.getFingerPrintTemplate(), cp2.getFingerPrintTemplate());
                         //System.out.println(types[j]+"Euclidean: "+res);
                         //Save Euclidean distance
@@ -384,21 +786,231 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                         }
                     }
                 }
+                    label.setText("Done..");
+                jLabelifDone = label;
+                 chooser.setEnabled(false);
                 sortEuclidean(A_eDist, L_eDist, R_eDist, W_eDist, T_eDist);
-                StatusLabel.setText("Done..");
+            
                 //}//Test for confusion matris
             }).start();
             ////////////////////
 
         }
-    }//GEN-LAST:event_AnalyzeActionPerformed
-
+    
+    }
     private void resultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultBtnActionPerformed
         FingerPrintResults results = new FingerPrintResults(fingerClasses);
         results.setLocationRelativeTo(null);
         results.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         results.setVisible(true);
     }//GEN-LAST:event_resultBtnActionPerformed
+
+    private void finger2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger2ActionPerformed
+        chooser2 = new JFileChooser();
+        chooser2.showOpenDialog(null);
+        if (chooser2.getSelectedFile() != null) {
+            setGrayColor();
+            file2 = chooser2.getSelectedFile();
+            try {
+                img2 = ImageIO.read(file2);
+                width = img2.getWidth();
+                height = img2.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img2.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+                jLabel1.setIcon(imageIcon);
+
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img2);
+                 AnalyzedData(chooser2, jLabel2,jLabel1, img2);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger2ActionPerformed
+
+    private void finger3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger3ActionPerformed
+       chooser3 = new JFileChooser();
+        chooser3.showOpenDialog(null);
+        if (chooser3.getSelectedFile() != null) {
+            setGrayColor();
+            file3 = chooser3.getSelectedFile();
+            try {
+                img3 = ImageIO.read(file3);
+                width = img3.getWidth();
+                height = img3.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img3.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel3.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img3);
+                 AnalyzedData(chooser3, status3,fingerLabel3, img3);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger3ActionPerformed
+
+    private void finger4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger4ActionPerformed
+        chooser4 = new JFileChooser();
+        chooser4.showOpenDialog(null);
+        if (chooser4.getSelectedFile() != null) {
+            setGrayColor();
+            file4 = chooser4.getSelectedFile();
+            try {
+                img4 = ImageIO.read(file4);
+                width = img4.getWidth();
+                height = img4.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img4.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel4.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img4);
+                 AnalyzedData(chooser4, status4,fingerLabel4, img4);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger4ActionPerformed
+
+    private void finger5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger5ActionPerformed
+        chooser5 = new JFileChooser();
+        chooser5.showOpenDialog(null);
+        if (chooser5.getSelectedFile() != null) {
+            setGrayColor();
+            file5 = chooser5.getSelectedFile();
+            try {
+                img5 = ImageIO.read(file5);
+                width = img5.getWidth();
+                height = img5.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img5.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel5.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img5);
+                  AnalyzedData(chooser5, status5,fingerLabel5, img5);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger5ActionPerformed
+
+    private void finger6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger6ActionPerformed
+        chooser7 = new JFileChooser();
+        chooser7.showOpenDialog(null);
+        if (chooser7.getSelectedFile() != null) {
+            setGrayColor();
+            file7 = chooser7.getSelectedFile();
+            try {
+                img7 = ImageIO.read(file7);
+                width = img6.getWidth();
+                height = img6.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img7.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel7.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img7);
+                  AnalyzedData(chooser7, status7,fingerLabel7, img7);
+                  
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger6ActionPerformed
+
+    private void finger7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger7ActionPerformed
+        chooser6 = new JFileChooser();
+        chooser6.showOpenDialog(null);
+        if (chooser6.getSelectedFile() != null) {
+            setGrayColor();
+            file6 = chooser6.getSelectedFile();
+            try {
+                img6 = ImageIO.read(file6);
+                width = img6.getWidth();
+                height = img6.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img6.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                Finger6Label.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img6);
+                  AnalyzedData(chooser6, status6,Finger6Label, img6);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger7ActionPerformed
+
+    private void finger8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger8ActionPerformed
+        chooser8 = new JFileChooser();
+        chooser8.showOpenDialog(null);
+        if (chooser8.getSelectedFile() != null) {
+            setGrayColor();
+            file8 = chooser8.getSelectedFile();
+            try {
+                img8 = ImageIO.read(file8);
+                width = img8.getWidth();
+                height = img8.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img8.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel8.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img8);
+                  AnalyzedData(chooser8, status8,fingerLabel8, img8);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger8ActionPerformed
+
+    private void finger9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger9ActionPerformed
+       chooser9 = new JFileChooser();
+        chooser9.showOpenDialog(null);
+        if (chooser9.getSelectedFile() != null) {
+            setGrayColor();
+            file9 = chooser9.getSelectedFile();
+            try {
+                img9 = ImageIO.read(file9);
+                width = img9.getWidth();
+                height = img9.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img9.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel9.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img9);
+                  AnalyzedData(chooser9, status9,fingerLabel9, img9);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger9ActionPerformed
+
+    private void finger10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger10ActionPerformed
+       chooser10 = new JFileChooser();
+        chooser10.showOpenDialog(null);
+        if (chooser10.getSelectedFile() != null) {
+            setGrayColor();
+            file10 = chooser10.getSelectedFile();
+            try {
+                img10 = ImageIO.read(file10);
+                width = img10.getWidth();
+                height = img10.getHeight();
+                ImageIcon imageIcon = new ImageIcon(img10.getScaledInstance(250, 306, Image.SCALE_DEFAULT));
+               // jLabel1.setIcon(imageIcon);
+                fingerLabel10.setIcon(imageIcon);
+                
+                CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(img10);
+                  AnalyzedData(chooser10, status10,fingerLabel10, img10);
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+    }//GEN-LAST:event_finger10ActionPerformed
 
     private void sortEuclidean(List<Double> A, List<Double> L, List<Double> R, List<Double> W, List<Double> T) {
         Double[] nearest[] = new Double[50][2];
@@ -475,22 +1087,27 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         if (A >= L && A >= R && A >= W && A >= T) {
             labelA.setBackground(Color.GREEN);
             System.out.println("Type_A");
+            jLabelifDone.setText("Type_A");
         }
         if (L >= A && L >= R && L >= W && L >= T) {
             labelL.setBackground(Color.GREEN);
             System.out.println("Type_L");
+             jLabelifDone.setText("Type_L");
         }
         if (R >= A && R >= L && R >= W && R >= T) {
             labelR.setBackground(Color.GREEN);
             System.out.println("Type_R");
+             jLabelifDone.setText("Type_R");
         }
         if (W >= A && W >= L && W >= R && W >= T) {
             labelW.setBackground(Color.GREEN);
             System.out.println("Type_W");
+              jLabelifDone.setText("Type_W");
         }
         if (T >= A && T >= L && T >= W && T >= R) {
             labelT.setBackground(Color.GREEN);
             System.out.println("Type_T");
+              jLabelifDone.setText("Type_T");
         }
         //Turn on buttons
         finger1.setEnabled(true);
@@ -530,16 +1147,52 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private javax.swing.JButton Analyze;
     private javax.swing.JLabel Finger1Label;
     private javax.swing.JLabel Finger2Label;
+    private javax.swing.JLabel Finger6Label;
     private javax.swing.JPanel Panel1;
     private javax.swing.JPanel Panel2;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JButton finger1;
+    private javax.swing.JButton finger10;
+    private javax.swing.JButton finger2;
+    private javax.swing.JButton finger3;
+    private javax.swing.JButton finger4;
+    private javax.swing.JButton finger5;
+    private javax.swing.JButton finger6;
+    private javax.swing.JButton finger7;
+    private javax.swing.JButton finger8;
+    private javax.swing.JButton finger9;
+    private javax.swing.JLabel fingerLabel10;
+    private javax.swing.JLabel fingerLabel3;
+    private javax.swing.JLabel fingerLabel4;
+    private javax.swing.JLabel fingerLabel5;
+    private javax.swing.JLabel fingerLabel7;
+    private javax.swing.JLabel fingerLabel8;
+    private javax.swing.JLabel fingerLabel9;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel labelA;
     private javax.swing.JLabel labelL;
     private javax.swing.JLabel labelR;
     private javax.swing.JLabel labelT;
     private javax.swing.JLabel labelW;
     private javax.swing.JButton resultBtn;
+    private javax.swing.JLabel status10;
+    private javax.swing.JLabel status3;
+    private javax.swing.JLabel status4;
+    private javax.swing.JLabel status5;
+    private javax.swing.JLabel status6;
+    private javax.swing.JLabel status7;
+    private javax.swing.JLabel status8;
+    private javax.swing.JLabel status9;
     // End of variables declaration//GEN-END:variables
 }
