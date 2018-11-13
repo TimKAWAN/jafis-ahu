@@ -426,7 +426,7 @@ public class FingerPrintResults extends javax.swing.JFrame {
 
     private void processParams() {
 //        if (fingerClasses == null) {
-//            String[] types = {"Type_A", "Type_L", "Type_R", "Type_W", "Type_T"};
+//            String[] types = {"A", "L", "R", "W", "T"};
 //            fingerClasses = new ArrayList<>();
 //
 //            for (int at = 1; at <= 10; at++) {
@@ -470,7 +470,7 @@ public class FingerPrintResults extends javax.swing.JFrame {
         int evenValue = 0, oddValue = 0;
 
         for (int i = 0; i < fingerClasses.size(); i++) {
-            if (fingerClasses.get(i).equals("Type_W")) {
+            if (fingerClasses.get(i).equals("W")) {
                 if ((i + 1) % 2 == 0) {
                     evenValue += values[i];
                 } else {
@@ -492,11 +492,6 @@ public class FingerPrintResults extends javax.swing.JFrame {
      */
     private void determineSecondary() {
         String rIndex = fingerClasses.get(1), lIndex = fingerClasses.get(6); // get R&L index finger
-        // replace unnecessary chars and different naming
-        rIndex = rIndex.replaceAll("Type_", "");
-        lIndex = lIndex.replaceAll("Type_", "");
-        rIndex = rIndex.replace("L", "U");
-        lIndex = lIndex.replace("L", "U");
         second1Txt.setText(rIndex);
         second2Txt.setText(lIndex);
     }
