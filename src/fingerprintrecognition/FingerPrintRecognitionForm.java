@@ -6,6 +6,7 @@
 package fingerprintrecognition;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,6 +22,8 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.apache.commons.math3.ml.distance.EuclideanDistance;
 
 /**
@@ -30,7 +33,8 @@ import org.apache.commons.math3.ml.distance.EuclideanDistance;
 public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
     private JFileChooser chooser1, chooser2, chooser3, chooser4, chooser5, chooser6, chooser7, chooser8, chooser9, chooser10;
-    private BufferedImage img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, imgCompare;
+    public BufferedImage img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, imgCompare, ImageFromCrop;
+  
     private JButton button, button2;
     private JFrame comp;
     private String filename;
@@ -38,6 +42,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private JLabel label, jLabelifDone;
     private int width, width2;
     private int height, height2;
+    private  CroppingFrame frameCrop;
     /**
      * The Henry system of fingerprint classification
      *
@@ -74,7 +79,24 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         initComponents();
         fingerClasses = new ArrayList<>();
     }
-
+    
+    public JLabel jlabelForImageCrop;
+    
+   public static BufferedImage toBufferedImage(Image img){
+        if (img instanceof BufferedImage){
+            return (BufferedImage) img;
+        }
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        return bimage;
+   }
+    public void setImage1(Image img){
+        ImageIcon imgIcon = new ImageIcon(img);
+        jlabelForImageCrop.setIcon(imgIcon);
+        ImageFromCrop = toBufferedImage(img);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +128,8 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
         finger5 = new javax.swing.JButton();
         fingerLabel5 = new javax.swing.JLabel();
         status5 = new javax.swing.JLabel();
+        button1 = new java.awt.Button();
+        button3 = new java.awt.Button();
         jPanel11 = new javax.swing.JPanel();
         Panel2 = new javax.swing.JPanel();
         Finger6Label = new javax.swing.JLabel();
@@ -312,27 +336,51 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 .addComponent(status5))
         );
 
+        button1.setLabel("Choose Image");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        button3.setActionCommand("Validate");
+        button3.setLabel("Validate");
+        button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -592,20 +640,20 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelT, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelW, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelL, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelR, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelA, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelT, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -623,15 +671,29 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void checktype(){
+         width = ImageFromCrop.getWidth();
+                height = ImageFromCrop.getHeight();
+         CFingerPrint cp = new CFingerPrint(width, height);
+                cp.setFingerPrintImage(ImageFromCrop);
+        AnalyzedData( StatusLabel, Finger1Label, ImageFromCrop);
+    }
+    
     private void finger1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger1ActionPerformed
-
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = Finger1Label;
+             ImageFromCrop = img1;
+             return;
+        }
+       
         chooser1 = new JFileChooser();
         chooser1.showOpenDialog(null);
         if (chooser1.getSelectedFile() != null) {
@@ -647,7 +709,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img1);
                 setGrayColor();
-                AnalyzedData(chooser1, StatusLabel, Finger1Label, img1);
+               
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -668,10 +730,10 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private static final double PHASE_OFFSET = 0;
     private static final double ASPECT_RATIO = 0.5;
 
-    private void AnalyzedData(JFileChooser chooser, JLabel label, JLabel fingerLabelShow, BufferedImage imgCh) {
-        if (chooser != null && chooser.getSelectedFile() != null) {
+    private void AnalyzedData( JLabel label, JLabel fingerLabelShow, BufferedImage imgCh) {
+        
             //Turn off buttons
-            chooser.setEnabled(true);
+           
 
             ///////////////////
             final List<Double> A_eDist = new ArrayList();
@@ -763,14 +825,14 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
                 }
                 label.setText("Done..");
                 jLabelifDone = label;
-                chooser.setEnabled(false);
+//                chooser.setEnabled(false);
                 sortEuclidean(A_eDist, L_eDist, R_eDist, W_eDist, T_eDist);
 
                 //}//Test for confusion matris
             }).start();
             ////////////////////
 
-        }
+        
 
     }
     private void resultBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultBtnActionPerformed
@@ -791,6 +853,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_resultBtnActionPerformed
 
     private void finger2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger2ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = jLabel1;
+             ImageFromCrop = img2;
+             return;
+        }
         chooser2 = new JFileChooser();
         chooser2.showOpenDialog(null);
         if (chooser2.getSelectedFile() != null) {
@@ -805,7 +873,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img2);
-                AnalyzedData(chooser2, jLabel2, jLabel1, img2);
+//                AnalyzedData(chooser2, jLabel2, jLabel1, img2);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -813,6 +881,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger2ActionPerformed
 
     private void finger3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger3ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel3;
+             ImageFromCrop = img3;
+             return;
+        }
         chooser3 = new JFileChooser();
         chooser3.showOpenDialog(null);
         if (chooser3.getSelectedFile() != null) {
@@ -828,7 +902,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img3);
-                AnalyzedData(chooser3, status3, fingerLabel3, img3);
+//                AnalyzedData(chooser3, status3, fingerLabel3, img3);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -836,6 +910,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger3ActionPerformed
 
     private void finger4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger4ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel4;
+             ImageFromCrop = img4;
+             return;
+        }
         chooser4 = new JFileChooser();
         chooser4.showOpenDialog(null);
         if (chooser4.getSelectedFile() != null) {
@@ -851,7 +931,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img4);
-                AnalyzedData(chooser4, status4, fingerLabel4, img4);
+//                AnalyzedData(chooser4, status4, fingerLabel4, img4);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -859,6 +939,13 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger4ActionPerformed
 
     private void finger5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger5ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel5;
+             ImageFromCrop = img5;
+             return;
+        }
+        
         chooser5 = new JFileChooser();
         chooser5.showOpenDialog(null);
         if (chooser5.getSelectedFile() != null) {
@@ -874,7 +961,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img5);
-                AnalyzedData(chooser5, status5, fingerLabel5, img5);
+//                AnalyzedData(chooser5, status5, fingerLabel5, img5);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -882,6 +969,10 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger5ActionPerformed
 
     private void finger6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger6ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel7;return;
+        }        
         chooser7 = new JFileChooser();
         chooser7.showOpenDialog(null);
         if (chooser7.getSelectedFile() != null) {
@@ -897,7 +988,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img7);
-                AnalyzedData(chooser7, status7, fingerLabel7, img7);
+//                AnalyzedData(chooser7, status7, fingerLabel7, img7);
 
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
@@ -906,6 +997,11 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger6ActionPerformed
 
     private void finger7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger7ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = Finger6Label;return;
+        }    
+        
         chooser6 = new JFileChooser();
         chooser6.showOpenDialog(null);
         if (chooser6.getSelectedFile() != null) {
@@ -921,7 +1017,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img6);
-                AnalyzedData(chooser6, status6, Finger6Label, img6);
+//                AnalyzedData(chooser6, status6, Finger6Label, img6);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -929,6 +1025,12 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger7ActionPerformed
 
     private void finger8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger8ActionPerformed
+       
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel8;return;
+        }    
+        
         chooser8 = new JFileChooser();
         chooser8.showOpenDialog(null);
         if (chooser8.getSelectedFile() != null) {
@@ -944,7 +1046,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img8);
-                AnalyzedData(chooser8, status8, fingerLabel8, img8);
+//                AnalyzedData(chooser8, status8, fingerLabel8, img8);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -952,6 +1054,11 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger8ActionPerformed
 
     private void finger9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger9ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel9;return;
+        }
+        
         chooser9 = new JFileChooser();
         chooser9.showOpenDialog(null);
         if (chooser9.getSelectedFile() != null) {
@@ -967,7 +1074,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img9);
-                AnalyzedData(chooser9, status9, fingerLabel9, img9);
+//                AnalyzedData(chooser9, status9, fingerLabel9, img9);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
@@ -975,6 +1082,10 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     }//GEN-LAST:event_finger9ActionPerformed
 
     private void finger10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finger10ActionPerformed
+        Boolean j = true;
+        if(j){
+             jlabelForImageCrop = fingerLabel10;return;
+        }
         chooser10 = new JFileChooser();
         chooser10.showOpenDialog(null);
         if (chooser10.getSelectedFile() != null) {
@@ -990,12 +1101,53 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
 
                 CFingerPrint cp = new CFingerPrint(width, height);
                 cp.setFingerPrintImage(img10);
-                AnalyzedData(chooser10, status10, fingerLabel10, img10);
+//                AnalyzedData(chooser10, status10, fingerLabel10, img10);
             } catch (IOException e1) {
                 System.err.println("Can't read file.");
             }
         }
     }//GEN-LAST:event_finger10ActionPerformed
+
+   
+    
+    
+    
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        chooser1 = new JFileChooser();
+        chooser1.showOpenDialog(null);
+        frameCrop = new CroppingFrame();
+        if (chooser1.getSelectedFile() != null) {
+            setGrayColor();
+            file1 = chooser1.getSelectedFile();
+            try {
+                img1 = ImageIO.read(file1);
+             
+                ImageIcon imageIcon = new ImageIcon(img1.getScaledInstance(217, 220, Image.SCALE_DEFAULT));
+                frameCrop.image = img1;
+
+               
+            } catch (IOException e1) {
+                System.err.println("Can't read file.");
+            }
+        }
+      
+       // JOptionPane.showMessageDialog(null, "coba");
+        try {    
+            
+            frameCrop.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            frameCrop.setContainer(this);
+            frameCrop.setVisible(true);
+            frameCrop.setAlwaysOnTop(true);
+     
+        } catch (Exception ex) {
+            Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        checktype();
+    }//GEN-LAST:event_button3ActionPerformed
 
     private void sortEuclidean(List<Double> A, List<Double> L, List<Double> R, List<Double> W, List<Double> T) {
         Double[] nearest[] = new Double[50][2];
@@ -1118,7 +1270,7 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FingerPrintRecognitionForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+            
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             FingerPrintRecognitionForm form = new FingerPrintRecognitionForm();
@@ -1133,6 +1285,8 @@ public class FingerPrintRecognitionForm extends javax.swing.JFrame {
     private javax.swing.JPanel Panel1;
     private javax.swing.JPanel Panel2;
     private javax.swing.JLabel StatusLabel;
+    private java.awt.Button button1;
+    private java.awt.Button button3;
     private javax.swing.JButton finger1;
     private javax.swing.JButton finger10;
     private javax.swing.JButton finger2;
